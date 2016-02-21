@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+  </head>
+  
+     <script type="text/javascript">
+
+          
+          function validateForm() {
+                var e = document.myform.region.value
+                //var e = document.getElementById("region");
+                
+                document.getElementById("demo").innerHTML="You selected:'"+e+"'"
+                
+                if(e <> "NULL"){
+                          return false;
+                          }else{
+                            return true;
+                          }
+                          
+          }
+  </script>
+  <body>
+    
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">How To Upload a File</h3>
+        <p id="demo"></p>
+      </div>
+      <hr/>
+      <div>
+	    
+      <form action="{{ uploadurl }}" method="post" enctype="multipart/form-data" onsubmit="return (validateForm())" name="myform" >	
+        <select name="region" >
+                <option value="NULL"></option>
+                <option value="HK">HK</option>
+                <option value="US">US</option>
+        </select>
+        <input type="file" name="file"><br /><br />
+        <input type="submit" value="Upload">
+        
+      </form>
+      </div>
+	<hr>
+      <div> List directory
+		<h5>Path is : {{ CurrentPath }}</h5>
+		<ul>
+		{%- for item in filelst recursive %}
+			{%- if item.isFile -%}
+			<li><a href='{{ item.UrlPath }}'>F: {{ item.name }}</a>
+			</li>
+			{%- else -%}
+			<li><a href='{{ item.UrlPath }}'>D: {{ item.name }}</a>
+			</li>
+    			{%- endif %}
+		{%- endfor %}
+		</ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+
+          document.getElementById("demo").innerHTML="Wait"  ; 
+          document.myform.region.value="{{SelectedRegion}}";
+          {%- if SelectedRegion -%}
+          document.myform.region.value="{{SelectedRegion}}";
+          {%- endif %}
+          </script>
