@@ -100,7 +100,8 @@ def upload_Path(relpath):
     directory = os.path.dirname(os.path.abspath(__file__))+"/" + app.config['UPLOAD_FOLDER']
     
     # Check if the file is one of the allowed types/extensions
-    if file and allowed_file(file.filename):
+    #if file and allowed_file(file.filename):
+	if file :
         # Make the filename safe, remove unsupported chars
         filename = secure_filename(file.filename)
         # Move the file form the temporal folder to
