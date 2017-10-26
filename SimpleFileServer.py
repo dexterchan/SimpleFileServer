@@ -101,7 +101,7 @@ def upload_Path(relpath):
     
     # Check if the file is one of the allowed types/extensions
     #if file and allowed_file(file.filename):
-	if file :
+    if file :
         # Make the filename safe, remove unsupported chars
         filename = secure_filename(file.filename)
         # Move the file form the temporal folder to
@@ -162,6 +162,6 @@ def not_found(error):
 if __name__ == '__main__':
     app.run(
         host= '0.0.0.0',
-        port=int("8080"),
+        port=int("80"),
         debug=True
     )
